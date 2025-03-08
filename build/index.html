@@ -15,6 +15,8 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Animate body */
         }
 
         .container {
@@ -24,12 +26,16 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            /* Animate container */
         }
 
         h1 {
             text-align: center;
             color: #007bff;
             margin-bottom: 20px;
+            transition: color 0.3s ease;
+            /* Animate title */
         }
 
         .project-grid {
@@ -43,14 +49,17 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-            /* Added transition for theme changes */
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
+            will-change: transform;
+            /* Improve animation performance */
         }
 
         .project-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Enhanced shadow on hover */
         }
 
         .project-card img {
@@ -60,18 +69,28 @@
             margin-bottom: 10px;
             object-fit: cover;
             display: block;
-            /* Prevent potential layout issues */
+            transition: opacity 0.3s ease;
+            /* Animate image loading */
+        }
+
+        .project-card img:not([src]) {
+            opacity: 0;
+            /* Initially hide unloaded images */
         }
 
         .project-card h2 {
             color: #333;
             margin-bottom: 5px;
             font-size: 1.2rem;
+            transition: color 0.3s ease;
+            /* Animate h2 */
         }
 
         .project-card p {
             color: #666;
             font-size: 0.9rem;
+            transition: color 0.3s ease;
+            /* Animate p */
         }
 
         .project-card .store-links {
@@ -88,16 +107,23 @@
             text-decoration: none;
             border-radius: 5px;
             font-size: 0.8rem;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            /* Animate button hover */
+            will-change: transform;
+            /* Improve animation performance */
         }
 
         .project-card .store-links a:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
+            /* Subtle scale animation on hover */
         }
 
         .linkedin-link {
             text-align: center;
             margin-top: 20px;
+            transition: color 0.3s ease;
+            /* Animate linkedInLink */
         }
 
         .linkedin-link a {
@@ -109,11 +135,16 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            /* Animate linkedInLinkHover */
+            will-change: transform;
+            /* Improve animation performance */
         }
 
         .linkedin-link a:hover {
             background-color: #005682;
+            transform: scale(1.05);
+            /* Subtle scale animation on hover */
         }
 
         /* Dark Theme Styles */
@@ -146,6 +177,10 @@
             color: #ccc;
         }
 
+        body.dark-theme .linkedin-link {
+            color: #eee;
+        }
+
         /* Theme Toggle Switch */
         .theme-switch-wrapper {
             display: flex;
@@ -159,6 +194,12 @@
             margin-right: 10px;
             font-size: 0.9rem;
             color: #777;
+            transition: color 0.3s ease;
+            /* Animate span */
+        }
+
+        body.dark-theme .theme-switch-wrapper span {
+            color: #ccc;
         }
 
         .theme-switch {
@@ -247,6 +288,47 @@
             }
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            // Function to apply system preference
+            function applySystemPreference() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    body.classList.add('dark-theme');
+                    themeToggle.checked = true;
+                } else {
+                    body.classList.remove('dark-theme');
+                    themeToggle.checked = false;
+                }
+            }
+
+            // Apply initial system preference
+            applySystemPreference();
+
+            // Listen for changes in system theme preference
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                applySystemPreference();
+            });
+
+            themeToggle.addEventListener('change', function () {
+                if (this.checked) {
+                    body.classList.add('dark-theme');
+                } else {
+                    body.classList.remove('dark-theme');
+                }
+            });
+
+            // Animate Image Loading
+            const images = document.querySelectorAll('.project-card img');
+            images.forEach(img => {
+                img.onload = () => {
+                    img.setAttribute('src', img.src); // Force re-render for transition
+                };
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -375,6 +457,19 @@
                 </div>
             </div>
 
+            <!-- Add Maroc 24 - Mobile App -->
+            <div class="project-card">
+                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQF8rInmNXTYrQ/articleshare-shrink_160/articleshare-shrink_160/0/1741449173474?e=1742054400&v=beta&t=cwc6Zu_aHiPyb2wiKRd7PTSc3kOMQ8SJwSmWsotzXxo"
+                    alt="Maroc24 Mobile App Icon">
+                <h2>Maroc24 Mobile App</h2>
+                <p>Mobile App for Maroc24.com</p>
+                <div class="store-links">
+                    <a href="https://play.google.com/store/apps/details?id=maroc24.app&hl=en" target="_blank">Google
+                        Play</a>
+                    <a href="https://apps.apple.com/ma/app/maroc24/id1573958847" target="_blank">App Store</a>
+                </div>
+            </div>
+
         </div>
 
         <div class="linkedin-link">
@@ -383,34 +478,44 @@
     </div>
 
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
 
-        // Function to apply system preference
-        function applySystemPreference() {
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                body.classList.add('dark-theme');
-                themeToggle.checked = true; // Update toggle to reflect system preference
-            } else {
-                body.classList.remove('dark-theme');
-                themeToggle.checked = false; // Update toggle to reflect system preference
+            // Function to apply system preference
+            function applySystemPreference() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    body.classList.add('dark-theme');
+                    themeToggle.checked = true; // Update toggle to reflect system preference
+                } else {
+                    body.classList.remove('dark-theme');
+                    themeToggle.checked = false; // Update toggle to reflect system preference
+                }
             }
-        }
 
-        // Apply initial system preference
-        applySystemPreference();
-
-        // Listen for changes in system theme preference
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            // Apply initial system preference
             applySystemPreference();
-        });
 
-        themeToggle.addEventListener('change', function () {
-            if (this.checked) {
-                body.classList.add('dark-theme');
-            } else {
-                body.classList.remove('dark-theme');
-            }
+            // Listen for changes in system theme preference
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                applySystemPreference();
+            });
+
+            themeToggle.addEventListener('change', function () {
+                if (this.checked) {
+                    body.classList.add('dark-theme');
+                } else {
+                    body.classList.remove('dark-theme');
+                }
+            });
+
+            // Animate Image Loading
+            const images = document.querySelectorAll('.project-card img');
+            images.forEach(img => {
+                img.onload = () => {
+                    img.setAttribute('src', img.src); // Force re-render for transition
+                };
+            });
         });
     </script>
 </body>
