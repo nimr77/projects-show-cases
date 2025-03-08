@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimr Sawafta - Project Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        /* Light Theme (Default) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Added transition for theme changes */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+
+        .project-card h2 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .project-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .project-card .store-links {
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .project-card .store-links a {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .project-card .store-links a:hover {
+            background-color: #0056b3;
+        }
+
+        .linkedin-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .linkedin-link a {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #0077B5; /* LinkedIn's blue color */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .linkedin-link a:hover {
+            background-color: #005682;
+        }
+
+        /* Dark Theme Styles */
+        body.dark-theme {
+            background-color: #121212;
+            color: #eee;
+        }
+
+        body.dark-theme .container {
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-theme h1 {
+            color: #64b5f6; /* A slightly lighter blue for dark theme */
+        }
+
+        body.dark-theme .project-card {
+            background-color: #333;
+            color: #eee;
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-theme .project-card h2 {
+            color: #eee;
+        }
+
+        body.dark-theme .project-card p {
+            color: #ccc;
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Push to the right */
+            margin-bottom: 15px;
+        }
+
+        .theme-switch-wrapper span {
+            margin-right: 10px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 10px;
+            }
+            .project-card {
+                padding: 15px;
+            }
+            .project-card img {
+                width: 60px;
+                height: 60px;
+            }
+            .project-card h2 {
+                font-size: 1rem;
+            }
+            .project-card p {
+                font-size: 0.8rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="theme-switch-wrapper">
+        <span>Light Mode</span>
+        <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider round"></span>
+        </label>
+        <span>Dark Mode</span>
+    </div>
+
+    <div class="container">
+        <h1>Nimr Sawafta - Project Showcase</h1>
+        <p style="text-align: center;"> A selection of mobile applications I have developed. </p>
+        <div class="project-grid">
+
+            <!-- Prestigia Mobile App -->
+            <div class="project-card">
+                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQFPTdftqS4gGQ/articleshare-shrink_160/articleshare-shrink_160/0/1739265995816?e=1742050800&amp;v=beta&amp;t=e8BWpYVa8YE9wmHxxVipJ36AJ7ll_Y3cEbWGtYORGpQ" alt="Prestigia Mobile App Icon">
+                <h2>Prestigia Mobile App</h2>
+                <p>Cutting-edge platform that has transformed the hotel booking experience. Designed and implemented a visually stunning, intuitive interface.</p>
+                <div class="store-links">
+                    <a href="https://apps.apple.com/us/app/prestigia-luxury-hotels/id6446838579?l=es-MX" target="_blank">App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.prestigia.androidApp&amp;hl=en" target="_blank">Google Play</a>
+                </div>
+            </div>
+
+            <!-- Ticket.ma Mobile App -->
+            <div class="project-card">
+                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQHvUiI8wTOVJg/articleshare-shrink_160/articleshare-shrink_160/0/1736779521335?e=1742050800&amp;v=beta&amp;t=-IZ7sj33IDJhMg2Ze2ZkPOt582m9IWqK1zbCovd6lqg" alt="Ticket.ma Mobile App Icon">
+                <h2>Ticket.ma Mobile App</h2>
+                <p>The go-to platform for event ticketing in North Africa. Users rave about its intuitive UI and fan-centric features.</p>
+                <div class="store-links">
+                    <a href="https://apps.apple.com/us/app/ticket-ma/id6447437711" target="_blank">App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=ma.ticket.app&amp;hl=en_US" target="_blank">Google Play</a>
+                </div>
+            </div>
+
+            <!-- eSimply Mobile App -->
+           <div class="project-card">
+                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQE-VW5dPouGsg/articleshare-shrink_160/articleshare-shrink_160/0/1741445758394?e=1742050800&amp;v=beta&amp;t=lciMX1uVbDtOpoisH8DKL_qX33z32RaaO8uMvg0BRFU" alt="eSimply: Travel & Mobile data">
+                <h2>eSimply: Travel & Mobile data</h2>
+                <p>Nuitee's groundbreaking app for selling eSIMs and partnering with hotels worldwide. Seamless user experience and drive business growth.</p>
+                <div class="store-links">
+                    <a href="https://apps.apple.com/us/app/esimply-travel-mobile-data/id6470910986?l=fr-FR" target="_blank">App Store</a>
+                </div>
+            </div>
+
+             <!-- YOOL EDUCATION Mobile App -->
+           <div class="project-card">
+                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQHTNva5siTqiw/articleshare-shrink_160/articleshare-shrink_160/0/1741445687527?e=1742050800&amp;v=beta&amp;t=cDQ5uR5K18dI3IKWX3KS3a2OLSRA7WYRZ7ufNiKapTk" alt="YOOL EDUCATION - Apps on Google Play">
+                <h2>YOOL EDUCATION</h2>
+                <p>Yool's educational mobile app, providing innovative learning solutions</p>
+                <div class="store-links">
+                    <a href="https://play.google.com/store/apps/details?id=app.yool.education.app.yool_mobile_app&amp;hl=en" target="_blank">Google Play</a>
+                </div>
+            </div>
+
+              <!-- Optovision - Stock Online Mobile App -->
+           <div class="project-card">
+                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQEwJ8518ZYBqA/articleshare-shrink_160/articleshare-shrink_160/0/1741445646252?e=1742050800&amp;v=beta&amp;t=lUKWhO2NI6uaB05cXI98cdWJWaf4rlx0YWNW5RiE4zQ" alt="Optovision - Stock Online - Apps on Google Play">
+                <h2>Optovision - Stock Online</h2>
+                <p>Smart management system for optical built with flutter and nodeJs also web dashboard for managing the sells along with a mobile app to make the sells in the stores</p>
+                <div class="store-links">
+                     <a href="https://play.google.com/store/apps/details?id=app.optovision.mobile&amp;hl=en" target="_blank">Google Play</a>
+                    <a href="https://apps.apple.com/us/app/optovision-stock-online/id6469088392" target="_blank">App Store</a>
+                </div>
+            </div>
+
+             <!-- Morocco English Radio - Mobile App -->
+           <div class="project-card">
+                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQHxa2H8VtYMiA/articleshare-shrink_160/articleshare-shrink_160/0/1741445475527?e=1742050800&amp;v=beta&amp;t=mkjeXhYv8Zs9EkyLM_1WXOnxqzJT2wVRwBc6T7G5ctY" alt="Morocco English Radio">
+                <h2>Morocco English Radio</h2>
+                <p>Developed a system to manage and end user mobile app to launch and chat with the radio, also an admin panel to manage the system</p>
+                <div class="store-links">
+                    <a href="https://apps.apple.com/ma/app/morocco-english-radio/id6444083781" target="_blank">App Store</a>
+                </div>
+            </div>
+
+             <!-- La route des empires - Mobile App -->
+           <div class="project-card">
+                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQH92u273Q5VfA/articleshare-shrink_160/articleshare-shrink_160/0/1741445387622?e=1742050800&amp;v=beta&amp;t=4h8IVyCWGB5ecN4hA1KfNjOe8D27Ro3NJCTYdWfW_I0" alt="La route des empires">
+                <h2>La route des empires</h2>
+                <p>Developing a mobile app for center of historical reacher in Rabat for the minister of cultural of Morocco</p>
+                <div class="store-links">
+                     <a href="https://apps.apple.com/us/app/la-route-des-empires/id1612252557?l=fr-FR" target="_blank">App Store</a>
+                      <a href="https://play.google.com/store/apps/details?id=ma.city.la_route_des_empires.app.la_route_des_empires&amp;hl=fr" target="_blank">Google Play</a>
+                </div>
+            </div>
+
+             <!-- My Essaouira  mobile app -->
+           <div class="project-card">
+                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQFi_GbTR_wAhQ/articleshare-shrink_160/articleshare-shrink_160/0/1741445590033?e=1742050800&amp;v=beta&amp;t=Xt-qemseGvrxYuwI9I6QSSjWXxXvZRYfims-qv3tKmE" alt="My Essaouira">
+                <h2>My Essaouira</h2>
+                <p>Development of an app for the Essaouira city</p>
+                <div class="store-links">
+                     <a href="https://apps.apple.com/us/app/my-essaouira/id1573911045" target="_blank">App Store</a>
+                      <a href="https://play.google.com/store/apps/details?id=ma.my_citiy.essaouira&amp;hl=fr" target="_blank">Google Play</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="linkedin-link">
+            <a href="https://www.linkedin.com/in/nimr-sawafta" target="_blank">Connect with me on LinkedIn</a>
+        </div>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Function to apply system preference
+        function applySystemPreference() {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+            }
+        }
+
+        // Apply initial system preference
+        applySystemPreference();
+
+        // Listen for changes in system theme preference
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            applySystemPreference();
+        });
+
+        themeToggle.addEventListener('change', function () {
+            if (this.checked) {
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+            }
+        });
+
+        // Set the toggle based on current body class (if dark theme is applied)
+        themeToggle.checked = body.classList.contains('dark-theme');
+    </script>
+</body>
+</html>
