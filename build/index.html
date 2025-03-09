@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nimr Sawafta - Project Showcase</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* Light Theme (Default) */
         body {
@@ -119,65 +122,54 @@
             /* Subtle scale animation on hover */
         }
 
-        .linkedin-link {
+        .linkedin-link,
+        .github-link {
             text-align: center;
             margin-top: 20px;
             transition: color 0.3s ease;
             /* Animate linkedInLink */
         }
 
-        .linkedin-link a {
+        .linkedin-link a,
+        .github-link a {
             display: inline-block;
             padding: 10px 15px;
-            background-color: #0077B5;
-            /* LinkedIn's blue color */
-            color: #fff;
-            text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease;
             /* Animate linkedInLinkHover */
             will-change: transform;
-            /* Improve animation performance */
+            text-decoration: none;
+            /*Remove Underline */
         }
 
-        .linkedin-link a:hover {
-            background-color: #005682;
+        .linkedin-link a {
+            background-color: #0077B5;
+            color: #fff;
+        }
+
+        .github-link a {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .linkedin-link a:hover,
+        .github-link a:hover {
             transform: scale(1.05);
             /* Subtle scale animation on hover */
         }
 
-        /* Dark Theme Styles */
-        body.dark-theme {
-            background-color: #121212;
-            color: #eee;
+        /* Github Logo */
+        .github-link a i {
+            margin-right: 5px;
         }
 
-        body.dark-theme .container {
-            background-color: #1e1e1e;
-            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+        .linkedin-link a i {
+            margin-right: 5px;
         }
 
-        body.dark-theme h1 {
-            color: #64b5f6;
-            /* A slightly lighter blue for dark theme */
-        }
-
-        body.dark-theme .project-card {
-            background-color: #333;
-            color: #eee;
-            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
-        }
-
-        body.dark-theme .project-card h2 {
-            color: #eee;
-        }
-
-        body.dark-theme .project-card p {
-            color: #ccc;
-        }
-
-        body.dark-theme .linkedin-link {
+        body.dark-theme .linkedin-link,
+        body.dark-theme .github-link {
             color: #eee;
         }
 
@@ -298,9 +290,11 @@
                 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                     body.classList.add('dark-theme');
                     themeToggle.checked = true;
+                    // Update toggle to reflect system preference
                 } else {
                     body.classList.remove('dark-theme');
                     themeToggle.checked = false;
+                    // Update toggle to reflect system preference
                 }
             }
 
@@ -324,7 +318,8 @@
             const images = document.querySelectorAll('.project-card img');
             images.forEach(img => {
                 img.onload = () => {
-                    img.setAttribute('src', img.src); // Force re-render for transition
+                    img.setAttribute('src', img.src);
+                    // Force re-render for transition
                 };
             });
         });
@@ -356,9 +351,9 @@
                     visually stunning, intuitive interface.</p>
                 <div class="store-links">
                     <a href="https://apps.apple.com/us/app/prestigia-luxury-hotels/id6446838579?l=es-MX"
-                        target="_blank">App Store</a>
+                        target="_blank"><i class="fab fa-app-store"></i> App Store</a>
                     <a href="https://play.google.com/store/apps/details?id=com.prestigia.androidApp&hl=en"
-                        target="_blank">Google Play</a>
+                        target="_blank"><i class="fab fa-google-play"></i> Google Play</a>
                 </div>
             </div>
 
@@ -370,9 +365,10 @@
                 <p>The go-to platform for event ticketing in North Africa. Users rave about its intuitive UI and
                     fan-centric features.</p>
                 <div class="store-links">
-                    <a href="https://apps.apple.com/us/app/ticket-ma/id6447437711" target="_blank">App Store</a>
-                    <a href="https://play.google.com/store/apps/details?id=ma.ticket.app&hl=en_US"
-                        target="_blank">Google Play</a>
+                    <a href="https://apps.apple.com/us/app/ticket-ma/id6447437711" target="_blank"><i
+                            class="fab fa-app-store"></i> App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=ma.ticket.app&hl=en_US" target="_blank"><i
+                            class="fab fa-google-play"></i> Google Play</a>
                 </div>
             </div>
 
@@ -385,7 +381,7 @@
                     experience and drive business growth.</p>
                 <div class="store-links">
                     <a href="https://apps.apple.com/us/app/esimply-travel-mobile-data/id6470910986?l=fr-FR"
-                        target="_blank">App Store</a>
+                        target="_blank"><i class="fab fa-app-store"></i> App Store</a>
                 </div>
             </div>
 
@@ -397,7 +393,7 @@
                 <p>Yool's educational mobile app, providing innovative learning solutions</p>
                 <div class="store-links">
                     <a href="https://play.google.com/store/apps/details?id=app.yool.education.app.yool_mobile_app&hl=en"
-                        target="_blank">Google Play</a>
+                        target="_blank"><i class="fab fa-google-play"></i> Google Play</a>
                 </div>
             </div>
 
@@ -410,8 +406,9 @@
                     sells along with a mobile app to make the sells in the stores</p>
                 <div class="store-links">
                     <a href="https://play.google.com/store/apps/details?id=app.optovision.mobile&hl=en"
-                        target="_blank">Google Play</a>
-                    <a href="https://apps.apple.com/us/app/optovision-stock-online/id6469088392" target="_blank">App
+                        target="_blank"><i class="fab fa-google-play"></i> Google Play</a>
+                    <a href="https://apps.apple.com/us/app/optovision-stock-online/id6469088392" target="_blank"><i
+                            class="fab fa-app-store"></i> App
                         Store</a>
                 </div>
             </div>
@@ -424,7 +421,8 @@
                 <p>Developed a system to manage and end user mobile app to launch and chat with the radio, also an admin
                     panel to manage the system</p>
                 <div class="store-links">
-                    <a href="https://apps.apple.com/ma/app/morocco-english-radio/id6444083781" target="_blank">App
+                    <a href="https://apps.apple.com/ma/app/morocco-english-radio/id6444083781" target="_blank"><i
+                            class="fab fa-app-store"></i> App
                         Store</a>
                 </div>
             </div>
@@ -437,10 +435,10 @@
                 <p>Developing a mobile app for center of historical reacher in Rabat for the minister of cultural of
                     Morocco</p>
                 <div class="store-links">
-                    <a href="https://apps.apple.com/us/app/la-route-des-empires/id1612252557?l=fr-FR"
-                        target="_blank">App Store</a>
+                    <a href="https://apps.apple.com/us/app/la-route-des-empires/id1612252557?l=fr-FR" target="_blank"><i
+                            class="fab fa-app-store"></i> App Store</a>
                     <a href="https://play.google.com/store/apps/details?id=ma.city.la_route_des_empires.app.la_route_des_empires&hl=fr"
-                        target="_blank">Google Play</a>
+                        target="_blank"><i class="fab fa-google-play"></i> Google Play</a>
                 </div>
             </div>
 
@@ -451,29 +449,37 @@
                 <h2>My Essaouira</h2>
                 <p>Development of an app for the Essaouira city</p>
                 <div class="store-links">
-                    <a href="https://apps.apple.com/us/app/my-essaouira/id1573911045" target="_blank">App Store</a>
+                    <a href="https://apps.apple.com/us/app/my-essaouira/id1573911045" target="_blank"><i
+                            class="fab fa-app-store"></i> App Store</a>
                     <a href="https://play.google.com/store/apps/details?id=ma.my_citiy.essaouira&hl=fr"
-                        target="_blank">Google Play</a>
+                        target="_blank"><i class="fab fa-google-play"></i> Google Play</a>
                 </div>
             </div>
 
             <!-- Add Maroc 24 - Mobile App -->
             <div class="project-card">
-                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQF8rInmNXTYrQ/articleshare-shrink_160/articleshare-shrink_160/0/1741449173474?e=1742054400&v=beta&t=cwc6Zu_aHiPyb2wiKRd7PTSc3kOMQ8SJwSmWsotzXxo"
+                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQF8rInmNXTYrQ/articleshare-shrink_160/articleshare-shrink_160/0/1741449173474?e=1742050800&v=beta&t=cwc6Zu_aHiPyb2wiKRd7PTSc3kOMQ8SJwSmWsotzXxo"
                     alt="Maroc24 Mobile App Icon">
                 <h2>Maroc24 Mobile App</h2>
                 <p>Mobile App for Maroc24.com</p>
                 <div class="store-links">
-                    <a href="https://play.google.com/store/apps/details?id=maroc24.app&hl=en" target="_blank">Google
-                        Play</a>
-                    <a href="https://apps.apple.com/ma/app/maroc24/id1573958847" target="_blank">App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=maroc24.app&hl=en" target="_blank"><i
+                            class="fab fa-google-play"></i> Google Play</a>
+                    <a href="https://apps.apple.com/ma/app/maroc24/id1573958847" target="_blank"><i
+                            class="fab fa-app-store"></i> App Store</a>
                 </div>
             </div>
 
         </div>
 
         <div class="linkedin-link">
-            <a href="https://www.linkedin.com/in/nimr-sawafta" target="_blank">Connect with me on LinkedIn</a>
+            <a href="https://www.linkedin.com/in/nimr-sawafta" target="_blank"><i class="fab fa-linkedin"></i> Connect
+                with me on LinkedIn</a>
+        </div>
+
+        <div class="github-link">
+            <a href="https://github.com/nimr77" target="_blank"><i class="fab fa-github"></i> View my GitHub
+                Profile</a>
         </div>
     </div>
 
@@ -486,10 +492,12 @@
             function applySystemPreference() {
                 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                     body.classList.add('dark-theme');
-                    themeToggle.checked = true; // Update toggle to reflect system preference
+                    themeToggle.checked = true;
+                    // Update toggle to reflect system preference
                 } else {
                     body.classList.remove('dark-theme');
-                    themeToggle.checked = false; // Update toggle to reflect system preference
+                    themeToggle.checked = false;
+                    // Update toggle to reflect system preference
                 }
             }
 
@@ -513,7 +521,8 @@
             const images = document.querySelectorAll('.project-card img');
             images.forEach(img => {
                 img.onload = () => {
-                    img.setAttribute('src', img.src); // Force re-render for transition
+                    img.setAttribute('src', img.src);
+                    // Force re-render for transition
                 };
             });
         });
