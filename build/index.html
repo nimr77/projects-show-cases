@@ -27,7 +27,8 @@
             margin: 20px auto;
             padding: 20px;
             background-color: #fff;
-            border-radius: 8px;
+            border-radius: 20px;
+            /*More Rounded Corners*/
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
             /* Animate container */
@@ -49,7 +50,8 @@
 
         .project-card {
             background-color: #fff;
-            border-radius: 8px;
+            border-radius: 25px;
+            /* MORE ROUNDED for the Cards */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px;
             transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
@@ -66,9 +68,12 @@
         }
 
         .project-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
+            width: 60px;
+            /* SHORTER IMAGES */
+            height: 60px;
+            /* SHORTER IMAGES */
+            border-radius: 22px;
+            /* App-like radius */
             margin-bottom: 10px;
             object-fit: cover;
             display: block;
@@ -108,7 +113,8 @@
             background-color: #007bff;
             color: #fff;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 10px;
+            /* Button Roundness */
             font-size: 0.8rem;
             transition: background-color 0.3s ease, transform 0.2s ease;
             /* Animate button hover */
@@ -123,7 +129,8 @@
         }
 
         .linkedin-link,
-        .github-link {
+        .github-link,
+        .portfolio-link {
             text-align: center;
             margin-top: 20px;
             transition: color 0.3s ease;
@@ -131,16 +138,18 @@
         }
 
         .linkedin-link a,
-        .github-link a {
+        .github-link a,
+        .portfolio-link a {
             display: inline-block;
             padding: 10px 15px;
-            border-radius: 5px;
+            border-radius: 10px;
+            /*Button Roundness */
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease;
             /* Animate linkedInLinkHover */
             will-change: transform;
             text-decoration: none;
-            /*Remove Underline */
+            /* Remove Underline */
         }
 
         .linkedin-link a {
@@ -153,23 +162,29 @@
             color: #fff;
         }
 
+        .portfolio-link a {
+            background-color: #6c757d;
+            /* A neutral gray */
+            color: #fff;
+        }
+
         .linkedin-link a:hover,
-        .github-link a:hover {
+        .github-link a:hover,
+        .portfolio-link a:hover {
             transform: scale(1.05);
             /* Subtle scale animation on hover */
         }
 
         /* Github Logo */
-        .github-link a i {
-            margin-right: 5px;
-        }
-
-        .linkedin-link a i {
+        .github-link a i,
+        .linkedin-link a i,
+        .portfolio-link a i {
             margin-right: 5px;
         }
 
         body.dark-theme .linkedin-link,
-        body.dark-theme .github-link {
+        body.dark-theme .github-link,
+        body.dark-theme .portfolio-link {
             color: #eee;
         }
 
@@ -279,11 +294,56 @@
                 font-size: 0.8rem;
             }
         }
+
+        /* Placeholder Style */
+        .image-placeholder {
+            width: 60px;
+            /* SHORTER IMAGES */
+            height: 60px;
+            /* SHORTER IMAGES */
+            border-radius: 22px;
+            /* App-like radius */
+            background-color: #eee;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            color: #999;
+            text-align: center;
+        }
+
+        body.dark-theme .image-placeholder {
+            background-color: #444;
+            color: #bbb;
+        }
+
+        /* Dark Mode Tweaks */
+
+        body.dark-theme,
+        body.dark-theme .container,
+        body.dark-theme .project-card {
+            background-color: #121212;
+            color: #eee;
+            border: 1px solid #333;
+            /* added to help the eye */
+        }
+
+        body.dark-theme h1,
+        body.dark-theme h2 {
+            color: #fff;
+            /*Keep color readable*/
+        }
+
+        body.dark-theme .project-card p {
+            color: #ccc;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const themeToggle = document.getElementById('theme-toggle');
             const body = document.body;
+            const repoName = 'https://nimr77.github.io/my-portfolio';
 
             // Function to apply system preference
             function applySystemPreference() {
@@ -312,16 +372,50 @@
                 } else {
                     body.classList.remove('dark-theme');
                 }
+                // Dispatch event for images to update.
+                window.dispatchEvent(new Event('themeChanged'));
             });
 
             // Animate Image Loading
+            const projectImages = {
+                'Prestigia Mobile App Icon': `${repoName}/images/projects/prestigia.png`,
+                'eSimply: Travel & Mobile data': `${repoName}/images/projects/eSimply.png`,
+                'Ticket.ma Mobile App Icon': `${repoName}/images/projects/ticket.png`,
+                'Optovision - Stock Online - Apps on Google Play': `${repoName}/images/projects/optovision.png`,
+                'Morocco English Radio': `${repoName}/images/projects/mer.png`,
+                'La route des empires': `${repoName}/images/projects/lesEmpires.png`,
+                'My Essaouira': `${repoName}/images/projects/myEssouira.png`,
+                'Maroc24 Mobile App Icon': `${repoName}/images/projects/maroc24.png`,
+                'YOOL EDUCATION - Apps on Google Play': "https://media.licdn.com/dms/image/sync/v2/D4E27AQHTNva5siTqiw/articleshare-shrink_160/articleshare-shrink_160/0/1741445687527?e=1742050800&v=beta&t=cDQ5uR5K18dI3IKWX3KS3a2OLSRA7WYRZ7ufNiKapTk",
+                'Laundry ERP': `${repoName}/images/projects/laundry.png`
+            };
             const images = document.querySelectorAll('.project-card img');
-            images.forEach(img => {
-                img.onload = () => {
-                    img.setAttribute('src', img.src);
-                    // Force re-render for transition
-                };
-            });
+
+            function updateImages() {
+                images.forEach(img => {
+                    const alt = img.alt;
+                    const src = projectImages[alt];
+                    if (src) {
+                        img.src = src;
+                        // Set local image paths
+                        img.onerror = () => {
+                            img.src = '';
+                            // Set a blank source
+                            img.style.display = 'none';
+                            // Hide the image
+                        }
+                    }
+                    img.onload = () => {
+                        img.setAttribute('src', img.src);
+
+                        // Force re-render for transition
+                    };
+                });
+            }
+            // Added Event Listener for the toggle to work again
+            window.addEventListener('themeChanged', updateImages);
+
+            updateImages();
         });
     </script>
 </head>
@@ -344,8 +438,7 @@
 
             <!-- Prestigia Mobile App -->
             <div class="project-card">
-                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQFPTdftqS4gGQ/articleshare-shrink_160/articleshare-shrink_160/0/1739265995816?e=1742050800&v=beta&t=e8BWpYVa8YE9wmHxxVipJ36AJ7ll_Y3cEbWGtYORGpQ"
-                    alt="Prestigia Mobile App Icon">
+                <img src="" alt="Prestigia Mobile App Icon">
                 <h2>Prestigia Mobile App</h2>
                 <p>Cutting-edge platform that has transformed the hotel booking experience. Designed and implemented a
                     visually stunning, intuitive interface.</p>
@@ -359,8 +452,7 @@
 
             <!-- Ticket.ma Mobile App -->
             <div class="project-card">
-                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQHvUiI8wTOVJg/articleshare-shrink_160/articleshare-shrink_160/0/1736779521335?e=1742050800&v=beta&t=-IZ7sj33IDJhMg2Ze2ZkPOt582m9IWqK1zbCovd6lqg"
-                    alt="Ticket.ma Mobile App Icon">
+                <img src="" alt="Ticket.ma Mobile App Icon">
                 <h2>Ticket.ma Mobile App</h2>
                 <p>The go-to platform for event ticketing in North Africa. Users rave about its intuitive UI and
                     fan-centric features.</p>
@@ -374,8 +466,7 @@
 
             <!-- eSimply Mobile App -->
             <div class="project-card">
-                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQE-VW5dPouGsg/articleshare-shrink_160/articleshare-shrink_160/0/1741445758394?e=1742050800&v=beta&t=lciMX1uVbDtOpoisH8DKL_qX33z32RaaO8uMvg0BRFU"
-                    alt="eSimply: Travel & Mobile data">
+                <img src="" alt="eSimply: Travel & Mobile data">
                 <h2>eSimply: Travel & Mobile data</h2>
                 <p>Nuitee's groundbreaking app for selling eSIMs and partnering with hotels worldwide. Seamless user
                     experience and drive business growth.</p>
@@ -387,8 +478,7 @@
 
             <!-- YOOL EDUCATION Mobile App -->
             <div class="project-card">
-                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQHTNva5siTqiw/articleshare-shrink_160/articleshare-shrink_160/0/1741445687527?e=1742050800&v=beta&t=cDQ5uR5K18dI3IKWX3KS3a2OLSRA7WYRZ7ufNiKapTk"
-                    alt="YOOL EDUCATION - Apps on Google Play">
+                <img src="" alt="YOOL EDUCATION - Apps on Google Play">
                 <h2>YOOL EDUCATION</h2>
                 <p>Yool's educational mobile app, providing innovative learning solutions</p>
                 <div class="store-links">
@@ -399,8 +489,7 @@
 
             <!-- Optovision - Stock Online Mobile App -->
             <div class="project-card">
-                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQEwJ8518ZYBqA/articleshare-shrink_160/articleshare-shrink_160/0/1741445646252?e=1742050800&v=beta&t=lUKWhO2NI6uaB05cXI98cdWJWaf4rlx0YWNW5RiE4zQ"
-                    alt="Optovision - Stock Online - Apps on Google Play">
+                <img src="" alt="Optovision - Stock Online - Apps on Google Play">
                 <h2>Optovision - Stock Online</h2>
                 <p>Smart management system for optical built with flutter and nodeJs also web dashboard for managing the
                     sells along with a mobile app to make the sells in the stores</p>
@@ -415,8 +504,7 @@
 
             <!-- Morocco English Radio - Mobile App -->
             <div class="project-card">
-                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQHxa2H8VtYMiA/articleshare-shrink_160/articleshare-shrink_160/0/1741445475527?e=1742050800&v=beta&t=mkjeXhYv8Zs9EkyLM_1WXOnxqzJT2wVRwBc6T7G5ctY"
-                    alt="Morocco English Radio">
+                <img src="" alt="Morocco English Radio">
                 <h2>Morocco English Radio</h2>
                 <p>Developed a system to manage and end user mobile app to launch and chat with the radio, also an admin
                     panel to manage the system</p>
@@ -429,8 +517,7 @@
 
             <!-- La route des empires - Mobile App -->
             <div class="project-card">
-                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQH92u273Q5VfA/articleshare-shrink_160/articleshare-shrink_160/0/1741445387622?e=1742050800&v=beta&t=4h8IVyCWGB5ecN4hA1KfNjOe8D27Ro3NJCTYdWfW_I0"
-                    alt="La route des empires">
+                <img src="" alt="La route des empires">
                 <h2>La route des empires</h2>
                 <p>Developing a mobile app for center of historical reacher in Rabat for the minister of cultural of
                     Morocco</p>
@@ -444,8 +531,7 @@
 
             <!-- My Essaouira  mobile app -->
             <div class="project-card">
-                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQFi_GbTR_wAhQ/articleshare-shrink_160/articleshare-shrink_160/0/1741445590033?e=1742050800&v=beta&t=Xt-qemseGvrxYuwI9I6QSSjWXxXvZRYfims-qv3tKmE"
-                    alt="My Essaouira">
+                <img src="" alt="My Essaouira">
                 <h2>My Essaouira</h2>
                 <p>Development of an app for the Essaouira city</p>
                 <div class="store-links">
@@ -458,8 +544,7 @@
 
             <!-- Add Maroc 24 - Mobile App -->
             <div class="project-card">
-                <img src="https://media.licdn.com/dms/image/sync/v2/D4E27AQF8rInmNXTYrQ/articleshare-shrink_160/articleshare-shrink_160/0/1741449173474?e=1742050800&v=beta&t=cwc6Zu_aHiPyb2wiKRd7PTSc3kOMQ8SJwSmWsotzXxo"
-                    alt="Maroc24 Mobile App Icon">
+                <img src="" alt="Maroc24 Mobile App Icon">
                 <h2>Maroc24 Mobile App</h2>
                 <p>Mobile App for Maroc24.com</p>
                 <div class="store-links">
@@ -467,6 +552,16 @@
                             class="fab fa-google-play"></i> Google Play</a>
                     <a href="https://apps.apple.com/ma/app/maroc24/id1573958847" target="_blank"><i
                             class="fab fa-app-store"></i> App Store</a>
+                </div>
+            </div>
+            <!-- Laundry -Mobile App -->
+            <div class="project-card">
+                <img src="" alt="Laundry ERP">
+                <h2>Laundry ERP</h2>
+                <p>Mobile App for Laundry ERP.com</p>
+                <div class="store-links">
+                    <a href="https://laundryservice.ma/?fbclid=IwAR1X8OLWhUtzgGG3jSNU8VMmJJIhDhcOOUtZbrrxG3K3yP5eIslskwBkOsA"
+                        target="_blank"><i class="fa-solid fa-shop"></i> Show project</a>
                 </div>
             </div>
 
@@ -481,12 +576,18 @@
             <a href="https://github.com/nimr77" target="_blank"><i class="fab fa-github"></i> View my GitHub
                 Profile</a>
         </div>
+
+        <div class="portfolio-link">
+            <a href="https://nimr77.github.io/my-portfolio/" target="_blank"><i class="fas fa-briefcase"></i> View my
+                Portfolio</a>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const themeToggle = document.getElementById('theme-toggle');
             const body = document.body;
+            const repoName = 'https://nimr77.github.io/my-portfolio';
 
             // Function to apply system preference
             function applySystemPreference() {
@@ -515,16 +616,50 @@
                 } else {
                     body.classList.remove('dark-theme');
                 }
+                // Dispatch event for images to update.
+                window.dispatchEvent(new Event('themeChanged'));
             });
 
             // Animate Image Loading
+            const projectImages = {
+                'Prestigia Mobile App Icon': `${repoName}/images/projects/prestigia.png`,
+                'eSimply: Travel & Mobile data': `${repoName}/images/projects/eSimply.png`,
+                'Ticket.ma Mobile App Icon': `${repoName}/images/projects/ticket.png`,
+                'Optovision - Stock Online - Apps on Google Play': `${repoName}/images/projects/optovision.png`,
+                'Morocco English Radio': `${repoName}/images/projects/mer.png`,
+                'La route des empires': `${repoName}/images/projects/lesEmpires.png`,
+                'My Essaouira': `${repoName}/images/projects/myEssouira.png`,
+                'Maroc24 Mobile App Icon': `${repoName}/images/projects/maroc24.png`,
+                'YOOL EDUCATION - Apps on Google Play': "https://media.licdn.com/dms/image/sync/v2/D4E27AQHTNva5siTqiw/articleshare-shrink_160/articleshare-shrink_160/0/1741445687527?e=1742050800&v=beta&t=cDQ5uR5K18dI3IKWX3KS3a2OLSRA7WYRZ7ufNiKapTk",
+                'Laundry ERP': `${repoName}/images/projects/laundry.png`
+            };
             const images = document.querySelectorAll('.project-card img');
-            images.forEach(img => {
-                img.onload = () => {
-                    img.setAttribute('src', img.src);
-                    // Force re-render for transition
-                };
-            });
+
+            function updateImages() {
+                images.forEach(img => {
+                    const alt = img.alt;
+                    const src = projectImages[alt];
+                    if (src) {
+                        img.src = src;
+                        // Set local image paths
+                        img.onerror = () => {
+                            img.src = '';
+                            // Set a blank source
+                            img.style.display = 'none';
+                            // Hide the image
+                        }
+                    }
+                    img.onload = () => {
+                        img.setAttribute('src', img.src);
+
+                        // Force re-render for transition
+                    };
+                });
+            }
+            // Added Event Listener for the toggle to work again
+            window.addEventListener('themeChanged', updateImages);
+
+            updateImages();
         });
     </script>
 </body>
